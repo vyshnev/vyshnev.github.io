@@ -200,12 +200,7 @@ header nav ul li a:hover {
     margin-bottom: 10px;
 }
 #projects .tech-stack em {
-    font-style: normal; /* Use normal style for tech */
-    /* Optional: Add background/border for tags */
-    /* background-color: #e9ecef;
-    padding: 2px 6px;
-    border-radius: 3px;
-    margin-right: 4px; */
+    font-style: normal;
 }
 
 #projects .project-link {
@@ -249,11 +244,14 @@ footer .contact-links {
     margin-bottom: 30px;
 }
 
+/* Updated Footer Icon/Link Styling */
 footer .contact-links li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Space between contact lines */
 }
 
 footer .contact-links a {
+    display: inline-flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center icon and text */
     color: #adb5bd; /* Lighter grey for links */
     text-decoration: none;
     transition: color 0.3s ease;
@@ -262,6 +260,21 @@ footer .contact-links a {
 footer .contact-links a:hover {
     color: #ffffff; /* White on hover */
 }
+
+footer .contact-links a i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.1em; /* Slightly larger icons */
+    vertical-align: middle; /* Helps align icon with text */
+    width: 20px; /* Give icons a fixed width for alignment */
+    text-align: center; /* Center icon within its fixed width */
+    transition: color 0.3s ease; /* Add transition to icon color */
+}
+
+/* Optional: Ensure icon color changes on hover */
+/* footer .contact-links a:hover i {
+     color: #ffffff;
+} */ /* This might be redundant if icon inherits link color */
+
 
 footer .copyright {
     font-size: 0.9em;
@@ -326,4 +339,8 @@ footer .copyright {
      #experience h3, #projects h3 {
         font-size: 1.2em;
     }
+    /* Adjust footer icon/text on small screens if needed */
+    /* footer .contact-links a span {
+        display: none; // Example: Hide text, show only icon
+    } */
 }
