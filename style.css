@@ -5,16 +5,44 @@
     padding: 0;
 }
 
+/* --- CSS Variables for Theming --- */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #333;
+    --heading-color: #212529;
+    --muted-color: #6c757d;
+    --accent-color: #007bff;
+    --accent-hover-color: #0056b3;
+    --card-bg-color: #ffffff;
+    --card-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    --border-color: #e0e0e7;
+    --header-bg: #ffffff;
+    --footer-bg: #343a40;
+    --footer-text: #f8f9fa;
+    --footer-link: #adb5bd;
+    --footer-link-hover: #ffffff;
+    --btn-primary-bg: #007bff;
+    --btn-primary-hover-bg: #0056b3;
+    --btn-secondary-bg: #6c757d;
+    --btn-secondary-hover-bg: #5a6268;
+    --link-color: #007bff;
+    --link-hover-color: #0056b3;
+
+    /* Transitions for smooth theme change */
+    --color-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
 html {
-    scroll-behavior: smooth; /* Smooth scrolling for nav links */
-    scroll-padding-top: 70px; /* Adjust based on header height */
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #f8f9fa; /* Light grey background */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--color-transition);
 }
 
 /* Container */
@@ -26,13 +54,14 @@ body {
 
 /* Header & Navigation */
 header {
-    background-color: #ffffff; /* White header */
+    background-color: var(--header-bg);
     padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
-    position: sticky; /* Make header sticky */
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--color-transition);
 }
 
 header .container {
@@ -44,12 +73,14 @@ header .container {
 header .logo {
     font-size: 1.5em;
     font-weight: bold;
-    color: #007bff; /* Accent color */
+    color: var(--accent-color);
+    transition: color 0.3s ease;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
+    align-items: center; /* Align items vertically */
 }
 
 header nav ul li {
@@ -58,39 +89,62 @@ header nav ul li {
 
 header nav ul li a {
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 header nav ul li a:hover {
-    color: #0056b3; /* Darker accent on hover */
+    color: var(--accent-hover-color);
 }
+
+/* --- Dark Mode Toggle Button Styles --- */
+#darkModeToggle {
+    background: none;
+    border: none;
+    color: var(--text-color); /* Use text color for the icon */
+    font-size: 1.2em; /* Adjust size as needed */
+    cursor: pointer;
+    padding: 5px; /* Add some padding for easier clicking */
+    line-height: 1; /* Prevent extra spacing */
+    transition: color 0.3s ease;
+    margin-left: 10px; /* Space from last nav item */
+}
+
+#darkModeToggle:hover {
+    color: var(--accent-hover-color); /* Use accent hover color */
+}
+
 
 /* Hero Section */
 #hero {
     text-align: center;
-    padding: 80px 20px 60px; /* More top padding */
-    background-color: #ffffff; /* White background for hero */
-    border-bottom: 1px solid #e0e0e0;
+    padding: 80px 20px 60px;
+    background-color: var(--card-bg-color); /* Use card background for hero */
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--color-transition);
 }
 
 #hero h1 {
     font-size: 2.8em;
     margin-bottom: 10px;
-    color: #212529;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
 }
 
 #hero .tagline {
     font-size: 1.4em;
-    color: #6c757d; /* Muted color for tagline */
+    color: var(--muted-color);
     margin-bottom: 20px;
+    transition: color 0.3s ease;
 }
 
 #hero .intro {
     font-size: 1.1em;
-    max-width: 700px; /* Constrain intro text width */
-    margin: 0 auto 30px; /* Center and add bottom margin */
+    max-width: 700px;
+    margin: 0 auto 30px;
+    color: var(--text-color);
+     transition: color 0.3s ease;
 }
 
 .hero-links .btn {
@@ -98,8 +152,8 @@ header nav ul li a:hover {
     padding: 12px 25px;
     margin: 5px;
     text-decoration: none;
-    color: #fff;
-    background-color: #007bff; /* Primary button color */
+    color: #fff; /* Usually white text on buttons */
+    background-color: var(--btn-primary-bg);
     border: none;
     border-radius: 5px;
     font-size: 1em;
@@ -108,23 +162,24 @@ header nav ul li a:hover {
 }
 
 .hero-links .btn:hover {
-    background-color: #0056b3; /* Darker on hover */
+    background-color: var(--btn-primary-hover-bg);
 }
 
 .hero-links .btn-secondary {
-    background-color: #6c757d; /* Secondary button color */
+    background-color: var(--btn-secondary-bg);
 }
 
 .hero-links .btn-secondary:hover {
-    background-color: #5a6268;
+    background-color: var(--btn-secondary-hover-bg);
 }
 
 /* Content Sections */
 .content-section {
     padding: 60px 20px;
-    border-bottom: 1px solid #e7e7e7; /* Separator lines */
+    border-bottom: 1px solid var(--border-color);
+    transition: border-color 0.3s ease;
 }
-.content-section:last-of-type { /* No border for the last section before footer */
+.content-section:last-of-type {
     border-bottom: none;
 }
 
@@ -132,7 +187,8 @@ header nav ul li a:hover {
     font-size: 2em;
     margin-bottom: 30px;
     text-align: center;
-    color: #343a40;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
 }
 
 /* Skills Section */
@@ -142,22 +198,25 @@ header nav ul li a:hover {
 
 #skills h3 {
     font-size: 1.2em;
-    color: #007bff;
+    color: var(--accent-color);
     margin-bottom: 5px;
+    transition: color 0.3s ease;
 }
 
 #skills p {
-    color: #495057;
+    color: var(--text-color); /* Use regular text color */
+    transition: color 0.3s ease;
 }
 
-/* Experience Section */
+/* Experience & Projects Sections */
 #experience .job,
 #projects .project {
-    background-color: #ffffff; /* White background for job/project cards */
+    background-color: var(--card-bg-color);
     padding: 25px;
     margin-bottom: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
+    transition: var(--color-transition), box-shadow 0.3s ease;
 }
 
 #experience .job:last-child,
@@ -169,73 +228,81 @@ header nav ul li a:hover {
 #projects h3 {
     font-size: 1.4em;
     margin-bottom: 5px;
-    color: #343a40;
+    color: var(--heading-color);
+    transition: color 0.3s ease;
 }
 
-#experience .client {
+#experience .client,
+#experience .date,
+#projects .tech-stack {
     font-size: 0.9em;
-    font-style: italic;
-    color: #6c757d;
+    color: var(--muted-color);
+    margin-bottom: 10px; /* Added consistent margin */
+    transition: color 0.3s ease;
 }
-
-#experience .date {
-    font-size: 0.9em;
-    color: #6c757d;
-    margin-bottom: 15px;
+#projects .tech-stack em {
+    font-style: normal;
 }
 
 #experience ul {
     list-style-position: outside;
-    padding-left: 20px; /* Indent list items */
+    padding-left: 20px;
 }
 
 #experience ul li {
     margin-bottom: 10px;
+    color: var(--text-color);
+    transition: color 0.3s ease;
 }
-
-/* Projects Section */
-#projects .tech-stack {
-    font-size: 0.9em;
-    color: #6c757d;
-    margin-bottom: 10px;
-}
-#projects .tech-stack em {
-    font-style: normal;
+#experience ul li strong {
+    color: var(--heading-color); /* Make strong text stand out more */
+    transition: color 0.3s ease;
 }
 
 #projects .project-link {
     display: inline-block;
     margin-top: 15px;
     text-decoration: none;
-    color: #007bff;
+    color: var(--link-color);
     font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 #projects .project-link:hover {
-    text-decoration: underline;
+    color: var(--link-hover-color);
 }
 
 /* Education Section */
 #education p {
     text-align: center;
     font-size: 1.1em;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+#education strong {
+    color: var(--heading-color);
+    transition: color 0.3s ease;
 }
 
 /* Footer */
 footer {
-    background-color: #343a40; /* Dark footer */
-    color: #f8f9fa; /* Light text */
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     padding: 40px 0;
     text-align: center;
+    transition: var(--color-transition);
 }
 
 footer h2 {
-    color: #ffffff; /* White heading */
+    color: var(--footer-text); /* Keep footer heading light */
     margin-bottom: 20px;
+    transition: color 0.3s ease;
 }
 
 footer p {
     margin-bottom: 20px;
+    color: var(--footer-text); /* Ensure paragraph text uses footer text color */
+     transition: color 0.3s ease;
 }
 
 footer .contact-links {
@@ -244,46 +311,73 @@ footer .contact-links {
     margin-bottom: 30px;
 }
 
-/* Updated Footer Icon/Link Styling */
 footer .contact-links li {
-    margin-bottom: 12px; /* Space between contact lines */
+    margin-bottom: 12px;
 }
 
 footer .contact-links a {
-    display: inline-flex; /* Use flexbox for alignment */
-    align-items: center; /* Vertically center icon and text */
-    color: #adb5bd; /* Lighter grey for links */
+    display: inline-flex;
+    align-items: center;
+    color: var(--footer-link);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer .contact-links a:hover {
-    color: #ffffff; /* White on hover */
+    color: var(--footer-link-hover);
 }
 
 footer .contact-links a i {
-    margin-right: 8px; /* Space between icon and text */
-    font-size: 1.1em; /* Slightly larger icons */
-    vertical-align: middle; /* Helps align icon with text */
-    width: 20px; /* Give icons a fixed width for alignment */
-    text-align: center; /* Center icon within its fixed width */
-    transition: color 0.3s ease; /* Add transition to icon color */
+    margin-right: 8px;
+    font-size: 1.1em;
+    vertical-align: middle;
+    width: 20px;
+    text-align: center;
+    /* Icon color will inherit from link */
 }
-
-/* Optional: Ensure icon color changes on hover */
-/* footer .contact-links a:hover i {
-     color: #ffffff;
-} */ /* This might be redundant if icon inherits link color */
-
 
 footer .copyright {
     font-size: 0.9em;
-    color: #6c757d; /* Muted copyright */
+    color: var(--muted-color); /* Use muted color for copyright */
     margin-top: 20px;
     margin-bottom: 0;
+     transition: color 0.3s ease;
 }
 
-/* Responsive Design */
+/* --- 🌑 DARK MODE STYLES 🌑 --- */
+body.dark-mode {
+    --bg-color: #121212; /* Very dark grey */
+    --text-color: #e0e0e0; /* Light grey text */
+    --heading-color: #ffffff; /* White headings */
+    --muted-color: #888888; /* Darker muted color */
+    --accent-color: #4dabf7; /* Lighter blue accent */
+    --accent-hover-color: #74c0fc; /* Even lighter blue */
+    --card-bg-color: #1e1e1e; /* Slightly lighter dark grey */
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+    --border-color: #333333; /* Dark border */
+    --header-bg: #1e1e1e;
+    --footer-bg: #1e1e1e; /* Make footer same as cards */
+    --footer-text: #e0e0e0;
+    --footer-link: #999999; /* Lighter grey links */
+    --footer-link-hover: #cccccc;
+    --btn-primary-bg: var(--accent-color);
+    --btn-primary-hover-bg: var(--accent-hover-color);
+    --btn-secondary-bg: #444444; /* Dark grey secondary button */
+    --btn-secondary-hover-bg: #555555;
+    --link-color: var(--accent-color);
+    --link-hover-color: var(--accent-hover-color);
+}
+
+/* Optional: Specific overrides if needed for dark mode that variables don't cover */
+body.dark-mode #darkModeToggle {
+    color: var(--text-color); /* Ensure icon uses dark mode text color */
+}
+body.dark-mode #darkModeToggle:hover {
+     color: var(--accent-hover-color);
+}
+
+
+/* Responsive Design (Keep as before) */
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
@@ -297,50 +391,27 @@ footer .copyright {
     header nav ul {
         margin-top: 10px;
         justify-content: center;
-        flex-wrap: wrap; /* Allow nav items to wrap */
+        flex-wrap: wrap;
     }
      header nav ul li {
-        margin: 5px 10px; /* Adjust spacing for smaller screens */
+        margin: 5px 10px;
     }
+     /* Ensure toggle button stays reasonable */
+     header nav ul li #darkModeToggle {
+         margin-left: 10px; /* Reset margin if needed */
+     }
 
-    #hero h1 {
-        font-size: 2.2em;
-    }
-
-    #hero .tagline {
-        font-size: 1.2em;
-    }
-
-    .content-section h2 {
-        font-size: 1.8em;
-    }
+    #hero h1 { font-size: 2.2em; }
+    #hero .tagline { font-size: 1.2em; }
+    .content-section h2 { font-size: 1.8em; }
 }
 
 @media (max-width: 480px) {
-    #hero h1 {
-        font-size: 1.8em;
-    }
-     #hero .tagline {
-        font-size: 1em;
-    }
-    #hero .intro {
-        font-size: 1em;
-    }
-    .hero-links .btn {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-    .content-section {
-        padding: 40px 15px;
-    }
-     .content-section h2 {
-        font-size: 1.6em;
-    }
-     #experience h3, #projects h3 {
-        font-size: 1.2em;
-    }
-    /* Adjust footer icon/text on small screens if needed */
-    /* footer .contact-links a span {
-        display: none; // Example: Hide text, show only icon
-    } */
+    #hero h1 { font-size: 1.8em; }
+     #hero .tagline { font-size: 1em; }
+    #hero .intro { font-size: 1em; }
+    .hero-links .btn { padding: 10px 20px; font-size: 0.9em; }
+    .content-section { padding: 40px 15px; }
+     .content-section h2 { font-size: 1.6em; }
+     #experience h3, #projects h3 { font-size: 1.2em; }
 }

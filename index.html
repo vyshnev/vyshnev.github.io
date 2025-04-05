@@ -9,23 +9,30 @@
     <!-- Your Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body> <!-- No class added here initially, JS will handle it -->
 
     <header>
         <nav class="container">
             <div class="logo">Vyshnev S</div>
-            <ul>
+            <ul class="nav-links"> <!-- Added a class for easier selection if needed -->
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <!-- Dark Mode Toggle Button -->
+                <li>
+                    <button id="darkModeToggle" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i> <!-- Moon icon by default -->
+                    </button>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero" class="container">
+        <!-- ... (Keep all your main content sections: hero, about, skills, experience, projects, education) ... -->
+         <section id="hero" class="container">
             <!-- Optional: <img src="your-photo.jpg" alt="Vyshnev S Headshot" class="profile-photo"> -->
             <h1>Vyshnev S</h1>
             <p class="tagline">Data Scientist | Machine Learning Engineer</p>
@@ -35,8 +42,8 @@
             <div class="hero-links">
                 <a href="https://linkedin.com/in/vyshnev" target="_blank" class="btn">LinkedIn</a>
                 <a href="https://github.com/vyshnev" target="_blank" class="btn">GitHub</a>
-                <a href="https://github.com/vyshnev/vyshnev.github.io/blob/5c9539b4dbddfb6824af79581d4d0b3f977e5ea0/vyshnev.pdf" target="_blank" class="btn btn-secondary">View Resume</a>
-                
+                <a href="[YOUR_RESUME_PDF_LINK_HERE]" target="_blank" class="btn btn-secondary">View Resume</a>
+                <!-- Remember to replace [YOUR_RESUME_PDF_LINK_HERE] with the actual link -->
             </div>
         </section>
 
@@ -158,8 +165,8 @@
         </div>
     </footer>
 
-    <!-- Optional: Add script for smooth scrolling or other interactions -->
-    <!-- <script src="script.js"></script> -->
+    <!-- Link to JavaScript File -->
+    <script src="script.js"></script>
 
 </body>
 </html>
