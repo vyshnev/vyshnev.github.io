@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyshnev S | Data Scientist</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Optional: Add Font Awesome for icons -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Vyshnev S</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="container">
+            <!-- Optional: <img src="your-photo.jpg" alt="Vyshnev S Headshot" class="profile-photo"> -->
+            <h1>Vyshnev S</h1>
+            <p class="tagline">Data Scientist | Machine Learning Engineer</p>
+            <p class="intro">
+                Building and deploying robust, scalable data solutions to drive business value. Experienced in end-to-end machine learning workflows, cloud technologies (AWS), and MLOps practices.
+            </p>
+            <div class="hero-links">
+                <a href="https://linkedin.com/in/vyshnev" target="_blank" class="btn">LinkedIn</a>
+                <a href="https://github.com/vyshnev" target="_blank" class="btn">GitHub</a>
+                <a href="https://github.com/vyshnev/vyshnev.github.io/blob/main/vyshnev.pdf" target="_blank" class="btn btn-secondary">View Resume</a>
+            </div>
+        </section>
+
+        <section id="about" class="container content-section">
+            <h2>About Me</h2>
+            <p>
+                I'm a Data Scientist passionate about leveraging data to solve complex problems and create impactful solutions. Currently at <strong>LTIMindtree</strong>, I specialize in developing machine learning models, particularly in areas like customer churn prediction and time series forecasting.
+            </p>
+            <p>
+                My experience covers the full project lifecycle: from data ingestion, cleaning, and exploratory analysis (EDA) to feature engineering, model training (using frameworks like Scikit-learn, XGBoost, PyTorch), deployment on cloud platforms like <strong>AWS</strong>, and implementing <strong>MLOps</strong> best practices with tools such as <strong>Docker, MLflow, and DVC</strong>. I thrive on translating data insights into actionable strategies and building systems that deliver measurable results, such as achieving significant churn reduction and cost savings for clients.
+            </p>
+        </section>
+
+        <section id="skills" class="container content-section">
+            <h2>Technical Skills</h2>
+            <div class="skill-category">
+                <h3>Languages:</h3>
+                <p>Python, SQL, C++, HTML/CSS</p>
+            </div>
+            <div class="skill-category">
+                <h3>Machine Learning / Data Science:</h3>
+                <p>Scikit-learn, Pandas, Numpy, Matplotlib, Seaborn, XGBoost, Statsmodels, Prophet, Keras, PyTorch, Explainable AI (SHAP, LIME)</p>
+            </div>
+            <div class="skill-category">
+                <h3>Web Frameworks & Deployment:</h3>
+                <p>Flask, FastAPI, Streamlit, Docker</p>
+            </div>
+            <div class="skill-category">
+                <h3>Cloud & MLOps:</h3>
+                <p>AWS (EC2, S3, ECR, RDS), MLflow, DVC, CI/CD (GitHub Actions), Git, Azure (Basic Exposure)</p>
+            </div>
+             <div class="skill-category">
+                 <h3>Databases:</h3>
+                 <p>PostgreSQL, MySQL, SQLite</p>
+             </div>
+            <div class="skill-category">
+                <h3>Developer Tools:</h3>
+                <p>Jupyter Notebooks, PyCharm, Postman, Jira, New Relic, Anaconda</p>
+            </div>
+        </section>
+
+        <section id="experience" class="container content-section">
+            <h2>Experience</h2>
+            <article class="job">
+                <h3>Engineer (Data Science focus) @ LTIMindtree <span class="client">(Client: Currys plc)</span></h3>
+                <p class="date">October 2022 – Present</p>
+                <ul>
+                    <li>Spearheaded the evolution of a customer churn prediction system from Logistic Regression to an <strong>XGBoost ensemble</strong>, achieving a <strong>14% churn reduction</strong> and <strong>£12M potential savings</strong> over 3 years.</li>
+                    <li>Enhanced model performance (<strong>AUC-ROC: 0.73 -> 0.89</strong>) by expanding features (22 to 45+) using time-series analysis, NLP insights, and behavioral segmentation.</li>
+                    <li>Collaborated to deploy a scalable, real-time prediction pipeline on <strong>AWS</strong>, handling <strong>50,000+ predictions/minute</strong> with <strong>99.99% uptime</strong>.</li>
+                    <li>Leveraged <strong>Explainable AI (XAI)</strong> techniques (SHAP, LIME) to identify key churn drivers, improving targeted retention effectiveness by <strong>7%</strong>.</li>
+                    <li>Implemented methods to evaluate and mitigate dataset bias, improving fairness metrics by <strong>5%</strong>.</li>
+                </ul>
+            </article>
+            <article class="job">
+                <h3>Junior Engineer (Data Analyst focus) @ LTIMindtree</h3>
+                <p class="date">March 2022 – September 2022</p>
+                <ul>
+                    <li>Utilized <strong>New Relic</strong> for real-time application performance monitoring and anomaly detection.</li>
+                    <li>Managed <strong>Salesforce</strong> data pipelines, ensuring data integrity and accuracy.</li>
+                    <li>Analyzed technical issues, performed root cause analysis, and supported data-driven development using Jira.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section id="projects" class="container content-section">
+            <h2>Featured Projects</h2>
+            <article class="project">
+                <h3>End-to-End Used Car Price Prediction</h3>
+                <p class="tech-stack"><em>Tech: Python, Streamlit, MLflow, DVC, Docker, AWS (S3, EC2), XGBoost, Random Forest</em></p>
+                <p>Developed a complete ML solution: web data scraping (ETL), model training & comparison, experiment tracking (MLflow), data versioning (DVC), and deployment via a containerized Streamlit app on AWS EC2.</p>
+                <a href="[YOUR_GITHUB_REPO_LINK_CAR_PRICE]" target="_blank" class="project-link">View on GitHub</a>
+            </article>
+            <article class="project">
+                <h3>Sales Forecasting System</h3>
+                <p class="tech-stack"><em>Tech: Python, Pandas, Statsmodels, Prophet, Scikit-learn, Flask, Docker</em></p>
+                <p>Built a time-series forecasting system using SARIMA and Facebook Prophet to predict retail sales. Included data preprocessing, feature engineering, and automated training/deployment using Flask and Docker.</p>
+                <a href="[YOUR_GITHUB_REPO_LINK_SALES_FORECAST]" target="_blank" class="project-link">View on GitHub</a>
+            </article>
+        </section>
+
+        <section id="education" class="container content-section">
+             <h2>Education</h2>
+             <p>
+                 <strong>Sri Manakula Vinayaka Engineering College</strong> - Puducherry, IN <br>
+                 B.Tech in Mechanical Engineering (Aug 2017 – Oct 2021)
+             </p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p>Interested in collaborating or discussing opportunities? Feel free to reach out!</p>
+            <ul class="contact-links">
+                <li>Email: <a href="mailto:vyshnevnandanam@gmail.com">vyshnevnandanam@gmail.com</a></li>
+                <li>LinkedIn: <a href="https://linkedin.com/in/vyshnev" target="_blank">linkedin.com/in/vyshnev</a></li>
+                <li>GitHub: <a href="https://github.com/vyshnev" target="_blank">github.com/vyshnev</a></li>
+            </ul>
+            <p class="copyright">© 2024 Vyshnev S</p>
+        </div>
+    </footer>
+
+    <!-- Add script for smooth scrolling if desired -->
+    <!-- <script src="script.js"></script> -->
+
+</body>
+</html>
