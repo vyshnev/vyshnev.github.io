@@ -1,0 +1,329 @@
+/* Basic Reset & Defaults */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for nav links */
+    scroll-padding-top: 70px; /* Adjust based on header height */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header & Navigation */
+header {
+    background-color: #ffffff; /* White header */
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007bff; /* Accent color */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: #0056b3; /* Darker accent on hover */
+}
+
+/* Hero Section */
+#hero {
+    text-align: center;
+    padding: 80px 20px 60px; /* More top padding */
+    background-color: #ffffff; /* White background for hero */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#hero h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    color: #212529;
+}
+
+#hero .tagline {
+    font-size: 1.4em;
+    color: #6c757d; /* Muted color for tagline */
+    margin-bottom: 20px;
+}
+
+#hero .intro {
+    font-size: 1.1em;
+    max-width: 700px; /* Constrain intro text width */
+    margin: 0 auto 30px; /* Center and add bottom margin */
+}
+
+.hero-links .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff; /* Primary button color */
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.hero-links .btn:hover {
+    background-color: #0056b3; /* Darker on hover */
+}
+
+.hero-links .btn-secondary {
+    background-color: #6c757d; /* Secondary button color */
+}
+
+.hero-links .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 60px 20px;
+    border-bottom: 1px solid #e7e7e7; /* Separator lines */
+}
+.content-section:last-of-type { /* No border for the last section before footer */
+    border-bottom: none;
+}
+
+.content-section h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #343a40;
+}
+
+/* Skills Section */
+#skills .skill-category {
+    margin-bottom: 20px;
+}
+
+#skills h3 {
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 5px;
+}
+
+#skills p {
+    color: #495057;
+}
+
+/* Experience Section */
+#experience .job,
+#projects .project {
+    background-color: #ffffff; /* White background for job/project cards */
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+#experience .job:last-child,
+#projects .project:last-child {
+    margin-bottom: 0;
+}
+
+#experience h3,
+#projects h3 {
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+#experience .client {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #6c757d;
+}
+
+#experience .date {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+#experience ul {
+    list-style-position: outside;
+    padding-left: 20px; /* Indent list items */
+}
+
+#experience ul li {
+    margin-bottom: 10px;
+}
+
+/* Projects Section */
+#projects .tech-stack {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+#projects .tech-stack em {
+    font-style: normal; /* Use normal style for tech */
+    /* Optional: Add background/border for tags */
+    /* background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 4px; */
+}
+
+#projects .project-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+}
+
+#projects .project-link:hover {
+    text-decoration: underline;
+}
+
+/* Education Section */
+#education p {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* Footer */
+footer {
+    background-color: #343a40; /* Dark footer */
+    color: #f8f9fa; /* Light text */
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer h2 {
+    color: #ffffff; /* White heading */
+    margin-bottom: 20px;
+}
+
+footer p {
+    margin-bottom: 20px;
+}
+
+footer .contact-links {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+footer .contact-links li {
+    margin-bottom: 10px;
+}
+
+footer .contact-links a {
+    color: #adb5bd; /* Lighter grey for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer .contact-links a:hover {
+    color: #ffffff; /* White on hover */
+}
+
+footer .copyright {
+    font-size: 0.9em;
+    color: #6c757d; /* Muted copyright */
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header .logo {
+        margin-bottom: 10px;
+    }
+
+    header nav ul {
+        margin-top: 10px;
+        justify-content: center;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+    }
+     header nav ul li {
+        margin: 5px 10px; /* Adjust spacing for smaller screens */
+    }
+
+    #hero h1 {
+        font-size: 2.2em;
+    }
+
+    #hero .tagline {
+        font-size: 1.2em;
+    }
+
+    .content-section h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h1 {
+        font-size: 1.8em;
+    }
+     #hero .tagline {
+        font-size: 1em;
+    }
+    #hero .intro {
+        font-size: 1em;
+    }
+    .hero-links .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .content-section {
+        padding: 40px 15px;
+    }
+     .content-section h2 {
+        font-size: 1.6em;
+    }
+     #experience h3, #projects h3 {
+        font-size: 1.2em;
+    }
+}
