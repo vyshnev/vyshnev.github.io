@@ -24,7 +24,7 @@ function drawPoints(points) {
     points.forEach(point => {
         // Basic validation for each point structure
         if (!Array.isArray(point) || point.length < 3 || typeof point[0] !== 'number' || typeof point[1] !== 'number' || typeof point[2] !== 'number') {
-             // console.warn("Invalid point structure:", point); // Optional logging
+             // console.warn("Skipping invalid point structure:", point); // Optional logging
              return; // Skip invalid points
         }
 
@@ -119,9 +119,17 @@ async function mainBackgroundAnimation() {
         for (let n = 0; n < 999999 && runBackground; n++) { // Main loop
             // --- Data Generation ---
             let pointsProxy = await generate();
+
+            // **** ADDED CHECK ****
+            if (!pointsProxy || typeof pointsProxy.toJs !== 'function') {
+                console.error("Error: generate() did not return a valid PyProxy object. Skipping epoch.", pointsProxy);
+                await new Promise(resolve => setTimeout(resolve, 1000)); // Wait before retrying
+                continue; // Skip to the next iteration of the outer loop
+            }
+
             // Safely convert PyProxy to JS array and destroy proxy
             currentPoints = pointsProxy.toJs({ deep_proxies: false });
-            pointsProxy.destroy();
+            pointsProxy.destroy(); // IMPORTANT: Destroy proxy after use
 
             resizeCanvas(); // Ensure canvas size is current before drawing
             drawPoints(currentPoints);
@@ -131,68 +139,62 @@ async function mainBackgroundAnimation() {
                 if (!runBackground) break; // Check flag to allow stopping
 
                 let boundaryProxy = await step(); // Perform one training step & get boundary
+
+                 // **** ADDED CHECK ****
+                if (!boundaryProxy || typeof boundaryProxy.toJs !== 'function') {
+                    console.error("Error: step() did not return a valid PyProxy object. Skipping step.", boundaryProxy);
+                     await new Promise(resolve => setTimeout(resolve, 50)); // Short wait
+                    continue; // Skip to next iteration of inner loop
+                }
+
                 let boundary = boundaryProxy.toJs({ deep_proxies: false });
-                boundaryProxy.destroy();
+                boundaryProxy.destroy(); // IMPORTANT: Destroy proxy after use
 
                 // Update points and redraw
                 currentPoints = addBoundaryToPoints(currentPoints, boundary);
                 drawPoints(currentPoints);
                 await new Promise(resolve => setTimeout(resolve, 20)); // Short delay for rendering
-            }
+            } // End of inner loop
 
             if (!runBackground) break; // Check flag again after inner loop
 
             // Clear console periodically
-            if (n % 100 === 0 && n > 0) {
+            if (n > 0 && n % 100 === 0 ) { // Clear every 100 epochs
                 console.clear();
                 console.log("Background animation running... (Console cleared)");
             }
         } // End of main loop
 
     } catch (error) {
-        console.error("Error during background animation setup or loop:", error);
-        // Decide how to handle errors (e.g., stop the animation)
-        runBackground = false;
-        // Optionally display a message to the user or just log
+        console.error("CRITICAL Error during background animation setup or loop:", error);
+        runBackground = false; // Stop the animation on critical error
     } finally {
         console.log("Background animation loop finished or stopped.");
-        // Cleanup if necessary (though Pyodide resources are managed internally)
     }
 }
 
 // --- Initialize ---
-// Make sure the DOM is ready before trying to access canvas or run the main function
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        canvas = document.getElementById('backgroundCanvas');
-        ctx = canvas ? canvas.getContext('2d') : null;
-        if (runBackground && canvas) {
-             mainBackgroundAnimation();
-             window.addEventListener('resize', () => {
-                resizeCanvas();
-                drawPoints(currentPoints); // Redraw with current points on resize
-             });
-        } else if (!canvas) {
-            console.warn("Background canvas not found on DOMContentLoaded.");
-        }
-    });
-} else {
-    // DOM is already ready
+// Use DOMContentLoaded to ensure elements are ready
+function initializeApp() {
     canvas = document.getElementById('backgroundCanvas');
     ctx = canvas ? canvas.getContext('2d') : null;
-     if (runBackground && canvas) {
-         mainBackgroundAnimation();
+    if (runBackground && canvas) {
+         console.log("DOM ready, starting background animation.")
+         mainBackgroundAnimation(); // Start the main async function
          window.addEventListener('resize', () => {
             resizeCanvas();
-            drawPoints(currentPoints); // Redraw with current points on resize
+            // Redraw immediately on resize with the last known points
+            // This might be slightly out of sync if resize happens during Python call, but usually fine
+            drawPoints(currentPoints);
          });
     } else if (!canvas) {
-        console.warn("Background canvas not found.");
+        console.warn("Background canvas element not found.");
     }
 }
 
-// Optional: Function to explicitly stop the animation if needed elsewhere
-// function stopBackgroundAnimation() {
-//     runBackground = false;
-//     console.log("Stopping background animation loop.");
-// }
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    // DOM is already ready
+    initializeApp();
+}
