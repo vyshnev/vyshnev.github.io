@@ -5,6 +5,10 @@ const toggleIcon = darkModeToggle.querySelector('i'); // Get the icon inside the
 
 // Function to set the theme based on preference
 const setTheme = (theme) => {
+    if (!body || !toggleIcon || !darkModeToggle) {
+        console.error("Dark mode elements not found");
+        return;
+    }
     body.classList.remove('light-mode', 'dark-mode'); // Remove existing classes first
     body.classList.add(theme + '-mode'); // Add the new theme class
     localStorage.setItem('theme', theme); // Save preference
@@ -37,17 +41,25 @@ if (currentTheme) {
 }
 
 
-// Add event listener to the toggle button
-darkModeToggle.addEventListener('click', () => {
-    // Check the *current* theme saved (or default light)
-    const themeToSet = localStorage.getItem('theme') === 'dark' ? 'light' : 'dark';
-    setTheme(themeToSet);
-});
+// Add event listener to the toggle button only if it exists
+if (darkModeToggle) {
+    darkModeToggle.addEventListener('click', () => {
+        // Check the *current* class on the body to determine the toggle target
+        const themeToSet = body.classList.contains('dark-mode') ? 'light' : 'dark';
+        setTheme(themeToSet);
+    });
+} else {
+    console.warn("Dark mode toggle button not found.");
+}
 
 // Optional: Listen for system preference changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-    // Only change if the user hasn't explicitly chosen a theme
-    if (!localStorage.getItem('theme')) {
-         setTheme(event.matches ? 'dark' : 'light');
-    }
-});
+try { // Wrap in try-catch for browsers that might not support addEventListener here
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+        // Only change if the user hasn't explicitly chosen a theme via localStorage
+        if (!localStorage.getItem('theme')) {
+            setTheme(event.matches ? 'dark' : 'light');
+        }
+    });
+} catch (e) {
+    console.warn("System theme change listener not supported or failed:", e);
+}

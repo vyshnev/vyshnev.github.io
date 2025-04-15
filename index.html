@@ -3,37 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vyshnev S | Data Scientist</title>
-    <!-- Add Font Awesome -->
+    <title>Vyshnev S | Data Scientist</title> <!-- Your Title -->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Your Stylesheet -->
     <link rel="stylesheet" href="style.css">
-</head>
-<body> <!-- No class added here initially, JS will handle it -->
 
+    <!-- Scripts needed for Background Animation (Place before body if possible, but works here too) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+
+</head>
+<body> <!-- No theme class initially, handled by script.js -->
+
+    <!-- Background Canvas (from example) -->
+    <canvas id="backgroundCanvas"></canvas>
+
+    <!-- Your Existing Header -->
     <header>
         <nav class="container">
             <div class="logo">Vyshnev S</div>
-            <ul class="nav-links"> <!-- Added a class for easier selection if needed -->
+            <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <!-- Dark Mode Toggle Button -->
                 <li>
                     <button id="darkModeToggle" title="Toggle Dark Mode">
-                        <i class="fas fa-moon"></i> <!-- Moon icon by default -->
+                        <i class="fas fa-moon"></i>
                     </button>
                 </li>
             </ul>
         </nav>
     </header>
 
+    <!-- Your Existing Main Content -->
     <main>
-        <!-- ... (Keep all your main content sections: hero, about, skills, experience, projects, education) ... -->
-         <section id="hero" class="container">
-            <!-- Optional: <img src="your-photo.jpg" alt="Vyshnev S Headshot" class="profile-photo"> -->
+        <section id="hero" class="container">
             <h1>Vyshnev S</h1>
             <p class="tagline">Data Scientist | Machine Learning Engineer</p>
             <p class="intro">
@@ -43,12 +52,13 @@
                 <a href="https://linkedin.com/in/vyshnev" target="_blank" class="btn">LinkedIn</a>
                 <a href="https://github.com/vyshnev" target="_blank" class="btn">GitHub</a>
                 <a href="https://github.com/vyshnev/vyshnev.github.io/blob/main/vyshnev.pdf" target="_blank" class="btn btn-secondary">View Resume</a>
+                <!-- Remember to replace [YOUR_RESUME_PDF_LINK_HERE] -->
             </div>
         </section>
 
         <section id="about" class="container content-section">
             <h2>About Me</h2>
-            <p>
+             <p>
                 I'm a Data Scientist passionate about leveraging data to solve complex problems and create impactful solutions. Currently at <strong>LTIMindtree</strong>, I specialize in developing machine learning models, particularly in areas like customer churn prediction and time series forecasting.
             </p>
             <p>
@@ -58,7 +68,7 @@
 
         <section id="skills" class="container content-section">
             <h2>Technical Skills</h2>
-            <div class="skill-category">
+             <div class="skill-category">
                 <h3>Languages:</h3>
                 <p>Python, SQL, C++, HTML/CSS</p>
             </div>
@@ -85,9 +95,9 @@
         </section>
 
         <section id="experience" class="container content-section">
-            <h2>Experience</h2>
+             <h2>Experience</h2>
             <article class="job">
-                <h3>Engineer (Data Science focus) @ LTIMindtree </h3>
+                <h3>Engineer (Data Science focus) @ LTIMindtree <span class="client">(Client: Currys plc)</span></h3>
                 <p class="date">October 2022 – Present</p>
                 <ul>
                     <li>Spearheaded the evolution of a customer churn prediction system from Logistic Regression to an <strong>XGBoost ensemble</strong>, achieving a <strong>14% churn reduction</strong> and <strong>£12M potential savings</strong> over 3 years.</li>
@@ -110,50 +120,52 @@
 
         <section id="projects" class="container content-section">
             <h2>Featured Projects</h2>
-            <article class="project">
+             <article class="project">
                 <h3>End-to-End Used Car Price Prediction</h3>
                 <p class="tech-stack"><em>Tech: Python, Streamlit, MLflow, DVC, Docker, AWS (S3, EC2), XGBoost, Random Forest</em></p>
                 <p>Developed a complete ML solution: web data scraping (ETL), model training & comparison, experiment tracking (MLflow), data versioning (DVC), and deployment via a containerized Streamlit app on AWS EC2.</p>
                 <a href="https://github.com/vyshnev/used-car-price-prediction.git" target="_blank" class="project-link">View on GitHub</a>
+                <!-- Remember to replace [YOUR_GITHUB_REPO_LINK_CAR_PRICE] -->
             </article>
             <article class="project">
                 <h3>Sales Forecasting System</h3>
                 <p class="tech-stack"><em>Tech: Python, Pandas, Statsmodels, Prophet, Scikit-learn, Flask, Docker</em></p>
                 <p>Built a time-series forecasting system using SARIMA and Facebook Prophet to predict retail sales. Included data preprocessing, feature engineering, and automated training/deployment using Flask and Docker.</p>
                 <a href="https://github.com/vyshnev/sales-forecasting-system.git" target="_blank" class="project-link">View on GitHub</a>
+                 <!-- Remember to replace [YOUR_GITHUB_REPO_LINK_SALES_FORECAST] -->
             </article>
         </section>
 
         <section id="education" class="container content-section">
-             <h2>Education</h2>
-             <p>
+            <h2>Education</h2>
+            <p>
                  <strong>Sri Manakula Vinayaka Engineering College</strong> - Puducherry, IN <br>
                  B.Tech in Mechanical Engineering (Aug 2017 – Oct 2021)
              </p>
         </section>
     </main>
 
+    <!-- Your Existing Footer -->
     <footer id="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
+             <h2>Get In Touch</h2>
             <p>Interested in collaborating or discussing opportunities? Feel free to reach out!</p>
-            <!-- Updated Contact Links with Icons -->
             <ul class="contact-links">
                 <li>
                     <a href="mailto:vyshnevnandanam@gmail.com" title="Email Vyshnev S">
-                        <i class="fas fa-envelope"></i> <!-- Email Icon -->
+                        <i class="fas fa-envelope"></i>
                         <span>vyshnevnandanam@gmail.com</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://linkedin.com/in/vyshnev" target="_blank" title="Vyshnev S on LinkedIn">
-                        <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
+                        <i class="fab fa-linkedin"></i>
                         <span>linkedin.com/in/vyshnev</span>
                     </a>
                 </li>
                 <li>
                     <a href="https://github.com/vyshnev" target="_blank" title="Vyshnev S on GitHub">
-                        <i class="fab fa-github"></i> <!-- GitHub Icon -->
+                        <i class="fab fa-github"></i>
                         <span>github.com/vyshnev</span>
                     </a>
                 </li>
@@ -162,8 +174,9 @@
         </div>
     </footer>
 
-    <!-- Link to JavaScript File -->
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="background.js"></script> <!-- Background animation script -->
+    <script src="script.js"></script>      <!-- Your Dark Mode script -->
 
 </body>
 </html>

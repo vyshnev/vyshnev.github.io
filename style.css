@@ -34,16 +34,61 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 70px;
+    scroll-padding-top: 70px; /* Adjust based on header height */
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* Your background */
     color: var(--text-color);
     transition: var(--color-transition);
+    position: relative; /* Needed for z-index stacking */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+/* --- Background Canvas Styling (from example, adapted) --- */
+#backgroundCanvas {
+    position: fixed; /* Stick to viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;      /* IMPORTANT: Behind everything else */
+    pointer-events: none; /* Allow clicks to go through to content below */
+}
+
+/* Ensure Header is above canvas */
+header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky; /* Keeps it sticky */
+    top: 0;
+    z-index: 1000; /* High z-index */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--color-transition);
+}
+
+/* --- Ensure Main Content is above canvas --- */
+main {
+    position: relative; /* Needed for z-index */
+    z-index: 1;       /* Above canvas */
+    background-color: transparent; /* Allow canvas to show through if body bg is transparent */
+                                   /* Or set to var(--bg-color) if you want it solid */
+}
+
+/* Ensure Footer is above canvas */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 40px 0;
+    text-align: center;
+    transition: var(--color-transition);
+    position: relative; /* Needed for z-index */
+    z-index: 2;      /* Above main content and canvas */
+}
+
 
 /* Container */
 .container {
@@ -53,17 +98,6 @@ body {
 }
 
 /* Header & Navigation */
-header {
-    background-color: var(--header-bg);
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: var(--color-transition);
-}
-
 header .container {
     display: flex;
     justify-content: space-between;
@@ -176,7 +210,8 @@ header nav ul li a:hover {
 /* Content Sections */
 .content-section {
     padding: 60px 20px;
-    border-bottom: 1px solid var(--border-color);
+    /* Removed border-bottom here - let cards define separation or add back if preferred */
+    /* border-bottom: 1px solid var(--border-color); */
     transition: border-color 0.3s ease;
 }
 .content-section:last-of-type {
@@ -210,18 +245,29 @@ header nav ul li a:hover {
 
 /* Experience & Projects Sections */
 #experience .job,
-#projects .project {
+#projects .project,
+#education, /* Style education similarly if desired */
+#about,     /* Style about section similarly if desired */
+#skills     /* Style skills section similarly if desired */
+ {
     background-color: var(--card-bg-color);
     padding: 25px;
-    margin-bottom: 30px;
+    margin-bottom: 30px; /* Space between sections/cards */
     border-radius: 8px;
     box-shadow: var(--card-shadow);
     transition: var(--color-transition), box-shadow 0.3s ease;
+     border: 1px solid var(--border-color); /* Add subtle border */
 }
+
+/* Adjust padding for sections that now have card styling */
+#about, #skills, #education {
+    padding: 40px 25px; /* Consistent padding */
+}
+
 
 #experience .job:last-child,
 #projects .project:last-child {
-    margin-bottom: 0;
+    margin-bottom: 0; /* Remove bottom margin for last item in exp/proj */
 }
 
 #experience h3,
@@ -272,39 +318,21 @@ header nav ul li a:hover {
     color: var(--link-hover-color);
 }
 
-/* Education Section */
+/* Education Section Specifics (if any) */
 #education p {
     text-align: center;
     font-size: 1.1em;
     color: var(--text-color);
     transition: color 0.3s ease;
+    margin: 0; /* Remove default p margin if card has padding */
 }
 #education strong {
     color: var(--heading-color);
     transition: color 0.3s ease;
 }
 
+
 /* Footer */
-footer {
-    background-color: var(--footer-bg);
-    color: var(--footer-text);
-    padding: 40px 0;
-    text-align: center;
-    transition: var(--color-transition);
-}
-
-footer h2 {
-    color: var(--footer-text); /* Keep footer heading light */
-    margin-bottom: 20px;
-    transition: color 0.3s ease;
-}
-
-footer p {
-    margin-bottom: 20px;
-    color: var(--footer-text); /* Ensure paragraph text uses footer text color */
-     transition: color 0.3s ease;
-}
-
 footer .contact-links {
     list-style: none;
     padding: 0;
@@ -333,7 +361,6 @@ footer .contact-links a i {
     vertical-align: middle;
     width: 20px;
     text-align: center;
-    /* Icon color will inherit from link */
 }
 
 footer .copyright {
@@ -346,23 +373,23 @@ footer .copyright {
 
 /* --- 🌑 DARK MODE STYLES 🌑 --- */
 body.dark-mode {
-    --bg-color: #121212; /* Very dark grey */
-    --text-color: #e0e0e0; /* Light grey text */
-    --heading-color: #ffffff; /* White headings */
-    --muted-color: #888888; /* Darker muted color */
-    --accent-color: #4dabf7; /* Lighter blue accent */
-    --accent-hover-color: #74c0fc; /* Even lighter blue */
-    --card-bg-color: #1e1e1e; /* Slightly lighter dark grey */
-    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
-    --border-color: #333333; /* Dark border */
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --muted-color: #888888;
+    --accent-color: #4dabf7;
+    --accent-hover-color: #74c0fc;
+    --card-bg-color: #1e1e1e;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --border-color: #333333;
     --header-bg: #1e1e1e;
-    --footer-bg: #1e1e1e; /* Make footer same as cards */
+    --footer-bg: #1e1e1e;
     --footer-text: #e0e0e0;
-    --footer-link: #999999; /* Lighter grey links */
+    --footer-link: #999999;
     --footer-link-hover: #cccccc;
     --btn-primary-bg: var(--accent-color);
     --btn-primary-hover-bg: var(--accent-hover-color);
-    --btn-secondary-bg: #444444; /* Dark grey secondary button */
+    --btn-secondary-bg: #444444;
     --btn-secondary-hover-bg: #555555;
     --link-color: var(--accent-color);
     --link-hover-color: var(--accent-hover-color);
@@ -376,8 +403,17 @@ body.dark-mode #darkModeToggle:hover {
      color: var(--accent-hover-color);
 }
 
+/* Make cards pop a bit more in dark mode */
+body.dark-mode #experience .job,
+body.dark-mode #projects .project,
+body.dark-mode #education,
+body.dark-mode #about,
+body.dark-mode #skills {
+     border-color: #444; /* Slightly lighter border */
+}
 
-/* Responsive Design (Keep as before) */
+
+/* Responsive Design */
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
@@ -414,4 +450,13 @@ body.dark-mode #darkModeToggle:hover {
     .content-section { padding: 40px 15px; }
      .content-section h2 { font-size: 1.6em; }
      #experience h3, #projects h3 { font-size: 1.2em; }
+
+     /* Adjust card padding on small screens */
+    #experience .job,
+    #projects .project,
+    #education,
+    #about,
+    #skills {
+        padding: 20px 15px;
+    }
 }
