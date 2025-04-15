@@ -5,8 +5,7 @@ let runBackground = true; // Flag to control the loop
 const fixedOpacity = 0.15; // Opacity for the drawn points
 
 // Global variable to store points for resize redraw
-let currentPoints = [];
-
+let currentPoints = []; // This will now hold the direct JS array
 
 function resizeCanvas() {
     if (!canvas) return;
@@ -118,18 +117,16 @@ async function mainBackgroundAnimation() {
 
         for (let n = 0; n < 999999 && runBackground; n++) { // Main loop
             // --- Data Generation ---
-            let pointsProxy = await generate();
+            // Directly get the JavaScript array, as nn.py uses to_js()
+            let generatedData = await generate();
 
-            // **** ADDED CHECK ****
-            if (!pointsProxy || typeof pointsProxy.toJs !== 'function') {
-                console.error("Error: generate() did not return a valid PyProxy object. Skipping epoch.", pointsProxy);
+            // Check if the returned data is a valid array
+            if (!Array.isArray(generatedData)) {
+                console.error("Error: generate() did not return a valid Array. Skipping epoch.", generatedData);
                 await new Promise(resolve => setTimeout(resolve, 1000)); // Wait before retrying
                 continue; // Skip to the next iteration of the outer loop
             }
-
-            // Safely convert PyProxy to JS array and destroy proxy
-            currentPoints = pointsProxy.toJs({ deep_proxies: false });
-            pointsProxy.destroy(); // IMPORTANT: Destroy proxy after use
+            currentPoints = generatedData; // Assign directly
 
             resizeCanvas(); // Ensure canvas size is current before drawing
             drawPoints(currentPoints);
@@ -138,20 +135,18 @@ async function mainBackgroundAnimation() {
             for (let i = 0; i < 400; i++) {
                 if (!runBackground) break; // Check flag to allow stopping
 
-                let boundaryProxy = await step(); // Perform one training step & get boundary
+                 // Directly get the JavaScript array for the boundary
+                let boundaryData = await step();
 
-                 // **** ADDED CHECK ****
-                if (!boundaryProxy || typeof boundaryProxy.toJs !== 'function') {
-                    console.error("Error: step() did not return a valid PyProxy object. Skipping step.", boundaryProxy);
+                // Check if the returned data is a valid array
+                if (!Array.isArray(boundaryData)) {
+                     console.error("Error: step() did not return a valid Array. Skipping step.", boundaryData);
                      await new Promise(resolve => setTimeout(resolve, 50)); // Short wait
                     continue; // Skip to next iteration of inner loop
                 }
 
-                let boundary = boundaryProxy.toJs({ deep_proxies: false });
-                boundaryProxy.destroy(); // IMPORTANT: Destroy proxy after use
-
-                // Update points and redraw
-                currentPoints = addBoundaryToPoints(currentPoints, boundary);
+                // Update points and redraw (no .toJs or destroy needed)
+                currentPoints = addBoundaryToPoints(currentPoints, boundaryData);
                 drawPoints(currentPoints);
                 await new Promise(resolve => setTimeout(resolve, 20)); // Short delay for rendering
             } // End of inner loop
@@ -184,7 +179,6 @@ function initializeApp() {
          window.addEventListener('resize', () => {
             resizeCanvas();
             // Redraw immediately on resize with the last known points
-            // This might be slightly out of sync if resize happens during Python call, but usually fine
             drawPoints(currentPoints);
          });
     } else if (!canvas) {
